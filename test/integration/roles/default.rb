@@ -7,7 +7,7 @@ run_list(
 
 default_attributes(
   "aqha" => {
-    "role_name" => "fooRoleName",
-    "environment_name" => "fooEnvironmentName"
+    "bootstrap_role_name" => "fooRoleName",
+    "bootstrap_environment_name" => "fooEnvironmentName"
   }
 )

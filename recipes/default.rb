@@ -17,13 +17,6 @@ directory node['aqha']['install_dir'] do
   action :create
 end
 
-directory "#{node['aqha']['install_dir']}/logs" do
-  owner 'root'
-  group 'root'
-  mode '0755'
-  action :create
-end
-
 template "#{node['aqha']['install_dir']}/bootstrap.sh" do
   source 'bootstrap.erb'
   mode '0555'
@@ -31,7 +24,7 @@ template "#{node['aqha']['install_dir']}/bootstrap.sh" do
   group 'root'
   variables(
     :install_dir => node['aqha']['install_dir'],
-    :environment_name => node['aqha']['environment_name']
+    :bootstrap_environment_name => node['aqha']['bootstrap_environment_name']
   )
 end
 
@@ -48,7 +41,7 @@ template "#{node['aqha']['install_dir']}/node.json" do
   owner 'root'
   group 'root'
   variables(
-    :role_name => node['aqha']['role_name']
+    :bootstrap_role_name => node['aqha']['bootstrap_role_name']
   )
 end
 
