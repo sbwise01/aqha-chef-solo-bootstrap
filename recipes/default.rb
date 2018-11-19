@@ -30,17 +30,17 @@ end
 
 template "#{node['aqha']['install_dir']}/solo.rb" do
   source 'solo.erb'
-  mode '0644'
+  mode '0444'
   owner 'root'
   group 'root'
-  variables (
+  variables(
     :install_dir => node['aqha']['install_dir']
   )
 end
 
 template "#{node['aqha']['install_dir']}/node.json" do
   source 'node_json.erb'
-  mode '0555'
+  mode '0444'
   owner 'root'
   group 'root'
   variables(
