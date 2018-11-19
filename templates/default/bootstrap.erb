@@ -22,7 +22,7 @@ KEY=`echo $RAW_USER_DATA | jq -r '.key'`
 aws s3 cp s3://$BUCKET/$KEY .
 
 #Unpack bootstrap configuration
-tar xvf config.tar.gz
+tar zxvf config.tar.gz
 
 #Run chef-solo
 CHEF_SOLO_ARGS="-c solo.rb -j node.json -E <%= @bootstrap_environment_name %>"
