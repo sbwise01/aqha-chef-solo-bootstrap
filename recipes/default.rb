@@ -28,11 +28,14 @@ template "#{node['aqha']['install_dir']}/bootstrap.sh" do
   )
 end
 
-cookbook_file "#{node['aqha']['install_dir']}/solo.rb" do
-  source 'solo.rb'
+template "#{node['aqha']['install_dir']}/solo.rb" do
+  source 'solo.erb'
+  mode '0644'
   owner 'root'
   group 'root'
-  mode '0644'
+  variables (
+    :install_dir => node['aqha']['install_dir']
+  )
 end
 
 template "#{node['aqha']['install_dir']}/node.json" do
