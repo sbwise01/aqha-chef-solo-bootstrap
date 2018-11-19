@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# Change directory to working dir
+cd <%= @install_dir %>
+
+# Check if executed before
+EXECUTION_GATE_FILE="/opt/aqha-chef-solo-bootstrap/.executed"
+if [ -f $EXECUTION_GATE_FILE ]; then
+    echo "Previous executed ... exiting"
+    exit 1
+fi
+
+touch $EXECUTION_GATE_FILE
+
+#Fetch user data
+RAW_USER_DATA=`curl http://169.254.169.254/latest/user-data`
+#RAW_USER_DATA='{"bucket": "brad-chef-bootstrap","key": "config.tar.gz"}'
+BUCKET=`echo $RAW_USER_DATA | jq -r '.bucket'`
+KEY=`echo $RAW_USER_DATA | jq -r '.key'`
+
+# Get the item's content and save it to a file
+aws s3 cp s3://$BUCKET/$KEY .
+
+#Unpack bootstrap configuration
+tar xvf config.tar.gz
+
+#Run chef-solo
+CHEF_SOLO_ARGS="chef-solo -c solo.rb -j node.json -E <%= @environment_name %>"
+echo "Running chef-solo $CHEF_SOLO_ARGS"
+chef-solo $CHEF_SOLO_ARGS
