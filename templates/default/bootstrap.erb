@@ -25,6 +25,6 @@ aws s3 cp s3://$BUCKET/$KEY .
 tar xvf config.tar.gz
 
 #Run chef-solo
-CHEF_SOLO_ARGS="chef-solo -c solo.rb -j node.json -E <%= @environment_name %>"
+CHEF_SOLO_ARGS="-c solo.rb -j node.json -E <%= @environment_name %>"
 echo "Running chef-solo $CHEF_SOLO_ARGS"
 chef-solo $CHEF_SOLO_ARGS
