@@ -19,7 +19,7 @@ BUCKET=`echo $RAW_USER_DATA | jq -r '.bucket'`
 KEY=`echo $RAW_USER_DATA | jq -r '.key'`
 
 # Get the item's content and save it to a file
-aws s3 cp s3://$BUCKET/$KEY .
+aws s3 cp s3://$BUCKET/$KEY ./config.tar.gz
 
 #Unpack bootstrap configuration
 tar zxvf config.tar.gz
