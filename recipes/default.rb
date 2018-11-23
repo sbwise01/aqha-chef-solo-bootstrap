@@ -24,7 +24,6 @@ template "#{node['aqha']['install_dir']}/bootstrap.sh" do
   group 'root'
   variables(
     :install_dir => node['aqha']['install_dir'],
-    :cookbooks_dir => node['aqha']['cookbooks_dir'],
     :bootstrap_environment_name => node['aqha']['bootstrap_environment_name']
   )
 end
@@ -35,7 +34,8 @@ template "#{node['aqha']['install_dir']}/solo.rb" do
   owner 'root'
   group 'root'
   variables(
-    :install_dir => node['aqha']['install_dir']
+    :install_dir => node['aqha']['install_dir'],
+    :cookbooks_dir => node['aqha']['cookbooks_dir']
   )
 end
 

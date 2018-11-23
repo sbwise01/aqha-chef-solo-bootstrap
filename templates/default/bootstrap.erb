@@ -3,9 +3,6 @@
 # Change directory to working dir
 cd <%= @install_dir %>
 
-# Copy baked cookbooks into place for deployment
-cp -R <%= @cookbooks_dir %> <%= @install_dir %>/
-
 # Check if executed before
 EXECUTION_GATE_FILE="/opt/aqha-chef-solo-bootstrap/.executed"
 if [ -f $EXECUTION_GATE_FILE ]; then
