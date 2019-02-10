@@ -11,9 +11,9 @@
 end
 
 #https://bugs.centos.org/view.php?id=15518
-execute 'stupid_awscli_hack' do
-  command "sed -i -e 's/\\/lib\\//\\/lib64\\//' /usr/lib/python2.7/site-packages/awscli/clidriver.py"
-end
+#execute 'stupid_awscli_hack' do
+#  command "sed -i -e 's/\\/lib\\//\\/lib64\\//' /usr/lib/python2.7/site-packages/awscli/clidriver.py"
+#end
 
 directory node['aqha']['install_dir'] do
   owner 'root'
